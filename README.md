@@ -1,4 +1,4 @@
-# split — bill tracker
+# split, bill tracker
 
 split bills without the awkward chasing. create a bill, share a payment link via whatsapp, and track who paid. no accounts required.
 
@@ -6,10 +6,10 @@ built for the [kracked devs split bill & payment tracker bounty](https://kracked
 
 ## how it works
 
-1. **create a bill** — title, total amount (rm), participants, optional due date and description
-2. **share the link** — copy or send via whatsapp. each participant gets a unique payment page
-3. **members confirm** — one tap to mark "i paid". no login needed
-4. **track progress** — dashboard shows collected, remaining, paid/unpaid list. auto-refreshes every 10s
+1. **create a bill**, title, total amount (rm), participants, optional due date and description
+2. **share the link**, copy or send via whatsapp. each participant gets a unique payment page
+3. **members confirm**, one tap to mark "i paid". no login needed
+4. **track progress**, dashboard shows collected, remaining, paid/unpaid list. auto-refreshes every 10s
 
 ## tech stack
 
@@ -20,7 +20,7 @@ built for the [kracked devs split bill & payment tracker bounty](https://kracked
 
 ## design
 
-dark theme with orange accent (#f97316), matching the motopark.my design system. lowercase text throughout, no em-dashes. green for paid, orange for pending. confetti animation when all participants have settled.
+dark theme with orange accent (#f97316). lowercase text throughout. green for paid, orange for pending. confetti animation when all participants have settled.
 
 ## pages
 

@@ -36,6 +36,16 @@ yarn-error.log*
 # vercel
 .vercel
 
+# ai agent files
+AGENTS.md
+CLAUDE.md
+CURSOR.md
+WINDSURF.md
+COPILOT.md
+.cursorrules
+.cursor/
+.windsurf/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

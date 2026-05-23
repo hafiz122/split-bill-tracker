@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# split — bill tracker
 
-## Getting Started
+split bills without the awkward chasing. create a bill, share a payment link via whatsapp, and track who paid. no accounts required.
 
-First, run the development server:
+built for the [kracked devs split bill & payment tracker bounty](https://krackeddevs.com/code/bounty/split-bill-payment-tracker-web-app).
+
+## how it works
+
+1. **create a bill** — title, total amount (rm), participants, optional due date and description
+2. **share the link** — copy or send via whatsapp. each participant gets a unique payment page
+3. **members confirm** — one tap to mark "i paid". no login needed
+4. **track progress** — dashboard shows collected, remaining, paid/unpaid list. auto-refreshes every 10s
+
+## tech stack
+
+- **frontend**: next.js 16 (app router), tailwind css, typescript
+- **backend**: appwrite (database + document storage, singapore region)
+- **deployment**: vercel
+- **fonts**: inter + geist mono
+
+## design
+
+dark theme with orange accent (#f97316), matching the motopark.my design system. lowercase text throughout, no em-dashes. green for paid, orange for pending. confetti animation when all participants have settled.
+
+## pages
+
+| route | description |
+|---|---|
+| `/` | create a new bill |
+| `/bill/[slug]` | public payment page for participants |
+| `/dashboard/[slug]` | organizer dashboard with live tracking |
+
+## local dev
 
 ```bash
+npm install
+cp .env.example .env.local  # add your appwrite credentials
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## env vars
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+NEXT_PUBLIC_APPWRITE_ENDPOINT=https://sgp.cloud.appwrite.io/v1
+NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_APPWRITE_DATABASE_ID=your_database_id
+NEXT_PUBLIC_APPWRITE_BILLS_COLLECTION=sb_bills
+NEXT_PUBLIC_APPWRITE_PARTICIPANTS_COLLECTION=sb_participants
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## features
 
-## Learn More
+- bill creation with participants management
+- unique shareable payment link per bill
+- one-tap payment confirmation (simulated)
+- real-time dashboard with auto-refresh
+- progress bar with collected/remaining stats
+- whatsapp share integration
+- confetti celebration when all paid
+- dark mode, mobile-friendly
+- staggered animations, toast notifications
+- no accounts or login required
 
-To learn more about Next.js, take a look at the following resources:
+## license
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+mit

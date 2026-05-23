@@ -116,7 +116,7 @@ export function BillViewClient({ slug }: { slug: string }) {
 
         {/* all paid */}
         {allPaid && (
-          <div className="rounded-xl border border-[#22c55e]/20 bg-[#0e0e10] p-4 mb-5 text-center animate-fade-in-up relative overflow-hidden">
+          <div className="rounded-xl border border-[#22c55e]/20 bg-[#0e0e10] p-4 mb-5 text-center animate-fade-in-up relative">
             <Confetti />
             <div className="text-2xl mb-1">done</div>
             <p className="text-sm font-semibold text-[#22c55e] mb-0.5">all paid up</p>

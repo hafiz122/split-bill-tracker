@@ -128,7 +128,7 @@ export function DashboardClient({ slug }: { slug: string }) {
 
         {/* all paid */}
         {allPaid && (
-          <div className="rounded-xl border border-[#22c55e]/20 bg-[#0e0e10] p-5 mb-6 text-center animate-fade-in-up relative overflow-hidden">
+          <div className="rounded-xl border border-[#22c55e]/20 bg-[#0e0e10] p-5 mb-6 text-center animate-fade-in-up relative">
             <Confetti />
             <div className="text-2xl mb-1">done</div>
             <h3 className="text-base font-bold text-[#22c55e] mb-1">fully settled</h3>

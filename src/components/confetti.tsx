@@ -18,25 +18,25 @@ interface Particle {
 }
 
 export function Confetti() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const anchor = anchorRef.current;
+    if (!anchor) return;
 
-    const rect = container.getBoundingClientRect();
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
+    const rect = anchor.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
     const particles: Particle[] = [];
-    const count = 50;
+    const count = 60;
 
     for (let i = 0; i < count; i++) {
       const el = document.createElement("div");
       const color = COLORS[Math.floor(Math.random() * COLORS.length)];
       const shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
-      const size = 4 + Math.random() * 8;
+      const size = 5 + Math.random() * 10;
 
-      el.style.position = "absolute";
+      el.style.position = "fixed";
       el.style.left = `${cx}px`;
       el.style.top = `${cy}px`;
       el.style.width = `${size}px`;
@@ -44,14 +44,15 @@ export function Confetti() {
       el.style.background = color;
       el.style.borderRadius = shape === "circle" ? "50%" : shape === "strip" ? "1px" : "2px";
       el.style.pointerEvents = "none";
-      el.style.zIndex = "10";
+      el.style.zIndex = "9999";
+      el.style.willChange = "transform, opacity";
 
-      container.appendChild(el);
+      document.body.appendChild(el);
 
       const angle = Math.random() * Math.PI * 2;
-      const speed = 120 + Math.random() * 200;
+      const speed = 160 + Math.random() * 280;
       const vx = Math.cos(angle) * speed;
-      const vy = Math.sin(angle) * speed - 40;
+      const vy = Math.sin(angle) * speed - 80;
 
       particles.push({
         el,
@@ -60,14 +61,14 @@ export function Confetti() {
         vx,
         vy,
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 900,
+        rotationSpeed: (Math.random() - 0.5) * 1200,
         opacity: 1,
-        scale: 0.6 + Math.random() * 0.8,
+        scale: 0.5 + Math.random() * 1.0,
       });
     }
 
     let start: number | null = null;
-    const duration = 2000;
+    const duration = 2200;
 
     function tick(ts: number) {
       if (!start) start = ts;
@@ -76,12 +77,12 @@ export function Confetti() {
 
       for (const p of particles) {
         p.x += p.vx * 0.016;
-        p.vy += 300 * 0.016;
+        p.vy += 400 * 0.016;
         p.y += p.vy * 0.016;
         p.rotation += p.rotationSpeed * 0.016;
 
-        if (progress > 0.6) {
-          p.opacity = Math.max(0, 1 - (progress - 0.6) / 0.4);
+        if (progress > 0.55) {
+          p.opacity = Math.max(0, 1 - (progress - 0.55) / 0.45);
         }
 
         p.el.style.transform = `translate(${p.x - cx}px, ${p.y - cy}px) rotate(${p.rotation}deg) scale(${p.scale})`;
@@ -107,10 +108,6 @@ export function Confetti() {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="absolute inset-0 overflow-hidden pointer-events-none"
-      aria-hidden="true"
-    />
+    <div ref={anchorRef} className="absolute inset-0 pointer-events-none" aria-hidden="true" />
   );
 }

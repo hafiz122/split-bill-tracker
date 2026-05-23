@@ -7,6 +7,7 @@ import {
   type Bill,
   type Participant,
 } from "@/lib/appwrite";
+import { Confetti } from "@/components/confetti";
 
 export function BillViewClient({ slug }: { slug: string }) {
   const [bill, setBill] = useState<Bill | null>(null);
@@ -115,15 +116,8 @@ export function BillViewClient({ slug }: { slug: string }) {
 
         {/* all paid */}
         {allPaid && (
-          <div className="rounded-xl border border-[#22c55e]/20 bg-[#0e0e10] p-4 mb-5 text-center animate-fade-in-up confetti-container">
-            <div className="confetti-piece" />
-            <div className="confetti-piece" />
-            <div className="confetti-piece" />
-            <div className="confetti-piece" />
-            <div className="confetti-piece" />
-            <div className="confetti-piece" />
-            <div className="confetti-piece" />
-            <div className="confetti-piece" />
+          <div className="rounded-xl border border-[#22c55e]/20 bg-[#0e0e10] p-4 mb-5 text-center animate-fade-in-up relative overflow-hidden">
+            <Confetti />
             <div className="text-2xl mb-1">done</div>
             <p className="text-sm font-semibold text-[#22c55e] mb-0.5">all paid up</p>
             <p className="text-xs text-[#9b9590]">everyone has settled. no more chasing needed.</p>
